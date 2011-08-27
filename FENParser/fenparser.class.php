@@ -67,15 +67,9 @@ class FENParser
                 if ($withCoordinates)
                 {
                     if ($row == 7)
-                    {
-                        $legend = "abcdefgh";
-                        $html .= '<span style="position: absolute; top: ' . (($row + 1) * 45 - 12) . 'px; left: ' . (($column + 1) * 45 - 8)  . 'px;" class="chess-diagram-legend">' . $legend[$column] . '</span>';
-                    }
+                        $html .= '<span style="position: absolute; top: ' . (($row + 1) * 45 - 12) . 'px; left: ' . (($column + 1) * 45 - 8)  . 'px;" class="chess-diagram-legend">' . chr(97 + $column) . '</span>';
                     if ($column == 0)
-                    {
-                        $legend = "87654321";
-                        $html .= '<span style="position: absolute; top: ' . ($row * 45 - 1) . 'px; left: 1px" class="chess-diagram-legend">' . $legend[$row] . '</span>';
-                    }
+                        $html .= '<span style="position: absolute; top: ' . ($row * 45 - 1) . 'px; left: 1px" class="chess-diagram-legend">' . chr(56 - $row) . '</span>';
                 }
             
                 if ($square)
