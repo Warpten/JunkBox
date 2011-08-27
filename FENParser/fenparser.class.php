@@ -107,4 +107,26 @@ class FENParser
     {
         return $this->errorMessage;
     }
+    
+    /* *************** */
+    /*      DEBUG      */
+    /* *************** */
+    public function printDebug()
+    {
+        $diagram = $this->diagram;
+    
+        $html = '<table>';
+        foreach ($diagram as $row => $A)
+        {
+            $html .= '<tr>';
+            foreach ($A as $column => $square)
+            {
+                $html .= '<td style="height: 35px; width: 35px; border: 1px solid black; text-align: center;">' . ($square ? $square : '') . '</td>';
+            }
+            $html .= '</tr>';
+        }
+        $html .= '</table>';
+        
+        return $html;
+    }
 }

@@ -18,6 +18,7 @@
 {
     width: 45px;
     height: 45px;
+    z-index: 200;
 }
 
 .br { background-image: url(./icons/br.gif); }
@@ -37,3 +38,10 @@
 
 .bp { background-image: url(./icons/bp.gif); }
 .wp { background-image: url(./icons/wp.gif); }
+
+.chess-diagram-legend
+{
+    font-family: Arial;
+    font-size: 10px;
+    z-index: 300;
+}
