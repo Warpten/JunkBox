@@ -1,0 +1,39 @@
+#chess-diagram-background
+{
+    width: 360px;
+    height: 360px;
+    background-image: url(./icons/chessboard.png);
+    position: relative;
+    border: 1px solid #333333;
+}
+
+#chess-diagram-wrapper 
+{
+    width: 362px;
+    height: 362px;
+    border: 1px solid #777777;
+}
+
+.wr, .wn, .wb, .wq, .wk, .wp, .br, .bn, .bb, .bq, .bk, .bp
+{
+    width: 45px;
+    height: 45px;
+}
+
+.br { background-image: url(./icons/br.gif); }
+.wr { background-image: url(./icons/wr.gif); }
+
+.bn { background-image: url(./icons/bn.gif); }
+.wn { background-image: url(./icons/wn.gif); }
+
+.bb { background-image: url(./icons/bb.gif); }
+.wb { background-image: url(./icons/wb.gif); }
+
+.bq { background-image: url(./icons/bq.gif); }
+.wq { background-image: url(./icons/wq.gif); }
+
+.bk { background-image: url(./icons/bk.gif); }
+.wk { background-image: url(./icons/wk.gif); }
+
+.bp { background-image: url(./icons/bp.gif); }
+.wp { background-image: url(./icons/wp.gif); }
