@@ -11,7 +11,7 @@ include('fenparser.class.php');
 <?php
 $parser = new FENParser("N2r1k2/pp1q1p1p/2nb2p1/2p5/8/1Q2P3/P4PBP/2R2RK1 w - - 3 24");
 $parser->FEN2Diagram();
-echo $parser->printDiagram();
+echo $parser->printDiagram(1);
 ?>   
 </body>
 </html>

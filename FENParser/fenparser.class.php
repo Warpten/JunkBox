@@ -55,15 +55,36 @@ class FENParser
         }
     }
     
-    public function printDiagram()
+    public function printDiagram($withCoordinates)
     {
         $diagram = $this->diagram;
         
         $html = '<div id="chess-diagram-wrapper"><div id="chess-diagram-background">';
         foreach ($diagram as $row => $places)
+        {
             foreach ($places as $column => $square)
-                if ($square != "")
-                    $html .= '<div class="' . ((strtoupper($square) == $square) ? 'w' : 'b') . strtolower($square) . '" style="position:absolute; top:' . ($row * 45) . 'px; left: ' . ($column * 45) . 'px"></div>';
+            {
+                if ($withCoordinates)
+                {
+                    if ($row == 7)
+                    {
+                        $legend = "abcdefgh";
+                        $html .= '<span style="position: absolute; top: ' . (($row + 1) * 45 - 12) . 'px; left: ' . (($column + 1) * 45 - 8)  . 'px;" class="chess-diagram-legend">' . $legend[$column] . '</span>';
+                    }
+                    if ($column == 0)
+                    {
+                        $legend = "87654321";
+                        $html .= '<span style="position: absolute; top: ' . ($row * 45 - 1) . 'px; left: 1px" class="chess-diagram-legend">' . $legend[$row] . '</span>';
+                    }
+                }
+            
+                if ($square)
+                {
+                    $html .= '<div class="' . ((strtoupper($square) == $square) ? 'w' : 'b') . strtolower($square) . '" style="position:absolute; top:' . ($row * 45) . 'px; left: ' . ($column * 45) . 'px">';
+                    $html .= '</div>';
+                }
+            }
+        }
         $html .= '</div></div>';
         
         return $html;
