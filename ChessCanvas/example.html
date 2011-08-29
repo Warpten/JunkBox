@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <script type="text/javascript" src="core.js"></script>
+    <script type="text/javascript">
+    function setColor()
+    {
+        var l = document.getElementById('light').value;
+        var b = document.getElementById('black').value;
+        chessCanvas.setSquareColours(l, b);
+    }
+    </script>
+</head>
+
+<body>
+    Edit the chessboard's size:
+    <input type="button" value="Increase" onclick="chessCanvas.modBoardSize(2)" />
+    <input type="button" value="Decrease" onclick="chessCanvas.modBoardSize(-2)" />
+    <input type="button" value="Reset" onclick="chessCanvas.setNewBoardSize(480)" />
+    <br />
+    Edit board colors: 
+    <input type="text" id="light" value="Light" onclick="this.value=''" /> <input type="text" id="black" value="Dark" onclick="this.value=''" />
+    <input type="submit" value="Edit" onclick="setColor()" />
+    <br />
+    <canvas id="canvas" width="360" height="360"></canvas>
+    
+    <script type="text/javascript">
+    chessCanvas.drawBoard(document.getElementById('canvas'));
+    </script>
+</body>
+</html>
