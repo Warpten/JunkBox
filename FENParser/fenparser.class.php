@@ -23,8 +23,6 @@ class FENParser
             $this->setErrorMessage("The string you passed is not a valid FEN string.");
             return false;
         }
-        
-        // No need to give any other test, juste save the FEN string
         $this->fen = $string;
         return true;
     }
@@ -45,7 +43,7 @@ class FENParser
                 if (ctype_digit($C[$i])) // Empty squares
                 {
                     for ($j = 0; $j < $C[$i]; $j++)
-                        $this->diagram[$lineIndex][] = "";
+                        $this->diagram[$lineIndex][] = 0;
                 }
                 else // A piece
                 {
@@ -55,6 +53,11 @@ class FENParser
         }
     }
     
+    /*
+     * Output the chess diagram on the web page
+     * Arguments   $withCoordinates       boolean to indicate wether or not you'd want to display the coordinates on the board.
+     * Return      HTML code
+     */
     public function printDiagram($withCoordinates)
     {
         $diagram = $this->diagram;
