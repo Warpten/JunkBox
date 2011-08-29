@@ -24,8 +24,20 @@
     <br />
     <canvas id="canvas" width="360" height="360"></canvas>
     
+    <!-- Here to use them only -->
+    <div style="display:none">
+        <img src="./bb.gif" id="bb" /> <img src="./wb.gif" id="wb" />
+        <img src="./br.gif" id="br" /> <img src="./wr.gif" id="wr" />
+        <img src="./bn.gif" id="bn" /> <img src="./wn.gif" id="wn" />
+        <img src="./bk.gif" id="bk" /> <img src="./wk.gif" id="wk" />
+        <img src="./bq.gif" id="bq" /> <img src="./wq.gif" id="wq" />
+        <img src="./bp.gif" id="bp" /> <img src="./wp.gif" id="wp" />
+    </div>
+    
     <script type="text/javascript">
-    chessCanvas.drawBoard(document.getElementById('canvas'));
+    window.addEventListener("load", function() {
+        chessCanvas.drawBoard(document.getElementById('canvas')); }, 
+        false);
     </script>
 </body>
 </html>

@@ -1,10 +1,12 @@
 var chessCanvas = {
-    squareSize: 60, // Default set to 60 but the user may want to enhance or decrease it
-    squareColours: new Array("f5f5dc", "708090"), // White square - Dark square
-    coloursSets: new Array(new Array("EEEED2", "769656"), // This one is only for reference, not used.
+    squareSize: 60,                                 // Default set to 60 but the user may want to enhance or decrease it
+    squareColours: new Array("f5f5dc", "708090"),   // White square - Dark square
+    coloursSets: new Array(new Array("EEEED2", "769656"),    // This one is only for reference, not used.
                             new Array("EFEFEF", "ABABAB"),
                             new Array("CDD1D4", "979B9E")),
-    dom: 0, // Contains the board's DOM reference, must be a canvas
+                            
+    dom: 0,             // Contains the board's DOM reference, must be a canvas
+    board: new Array("rnbqkbnr","pppppppp","8","8","8","8","PPPPPPPP","RNBQKBNR"), // Contains every piece on the board (Semi FEN like)
     
     /*
      * Draws the board, including pieces
@@ -16,6 +18,7 @@ var chessCanvas = {
         var colors = this.squareColours;    
         var max = this.squareSize * 8;
         var size = this.squareSize;
+
         domElement.setAttribute("width", (size * 8) + "px");
         domElement.setAttribute("height", (size * 8) + "px");
         domElement.style.border = "2px solid black";
@@ -28,6 +31,25 @@ var chessCanvas = {
                 context.fillRect(i * size, j * size, size, size);
             }
         }
+        
+        // Add the pieces
+        for (var i = 0; i < 8; i++)
+        {
+            var buffer = this.board[i];
+            for (var j = 0, n = buffer.length; j < n; j++)
+            {
+                var piece = buffer[j];
+                if (isNaN(Number(buffer[j])))
+                {
+                    var position = 0;
+                    for (var k = 0; k < j; k++)
+                        position += isNaN(Number(buffer[k])) ? 1 : Number(buffer[k]);
+
+                    var p = document.getElementById((piece.toUpperCase() == piece ? "w" : "b") + piece.toLowerCase());
+                    context.drawImage(p, position * size, i * size, size, size);
+                }
+            }
+        }
     },
     
     /*
@@ -36,6 +58,7 @@ var chessCanvas = {
     setSquareColours: function(light, dark)
     {
         var oldColours = this.squareColours;
+        
         // Convert the old colours to RGB
         var oldLightRComponent = this.hexToR(oldColours[0]);
         var oldLightGComponent = this.hexToG(oldColours[0]);
@@ -43,6 +66,7 @@ var chessCanvas = {
         var oldDarkRComponent = this.hexToR(oldColours[1]);
         var oldDarkGComponent = this.hexToG(oldColours[1]);
         var oldDarkBComponent = this.hexToB(oldColours[1]);
+        
         // Also convert the new colours
         this.squareColours = new Array(light, dark);
         var newLightRComponent = this.hexToR(light);
@@ -101,7 +125,7 @@ var chessCanvas = {
     },
     
     /*
-     * Forces a new value for the board.
+     * Forces a new value for the board. Same as before, it does trigger the board's regeneration, so beware with highly loaded boards.
      */
     setNewBoardSize: function(i)
     {
